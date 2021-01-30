@@ -1,0 +1,7 @@
+{
+  "name": "cross-platform-bt",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
