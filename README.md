@@ -1,6 +1,8 @@
-# Cross platform Ionic native plugin tutorials
+# Ionic cross-platform native plugin tutorial
 
-If you haven't used Ionic before, you'll need to download the CLI tool.
+This is a tutorial to set up for a project to create a cross platform bluetooth mobile app using [Google's Nearby Messages](https://developers.google.com/nearby/messages/overview).
+
+If you haven't used [Ionic](https://ionicframework.com/) before, you'll need to download the CLI tool.
 
 `npm install -g @ionic/cli`
 
@@ -14,7 +16,7 @@ Once we've generated our app, we can view it in a browser.
 
 `cd bt-messages && ionic serve`
 
-I'm using Capacitor (rather than `Cordova`), which builds native Android and iOS projects from a single codebase, allowing me to directly write some native code (in Java and Swift) in each native project; I'll then register my native code as a _plugin_ with Capacitor so I can call my native code from my React app where I'm writing the business logic.
+I'm using [Capacitor](https://capacitorjs.com/) (rather than `Cordova`), which builds native Android and iOS projects from a single codebase, allowing me to directly write some native code (in Java and Swift) in each native project; I'll then register my native code as a _plugin_ with Capacitor so I can call my native code from my React app where I'm writing the business logic.
 
 To add Android and iOS to our project using Capacitor we run:
 
@@ -38,9 +40,11 @@ There are three main steps to writing a plugin:
 - (iOS & Android) Register this class as a plugin with Capacitor.
 - (Javascript - Ionic) Import and call the methods of our plugin.
 
-Let's start by creating a local native plugin called `NearbyMessagesPlugin` and add a simple `HelloWorld` method to test that our Javascript can call native functions. The method is going to resolve the call by sending back a JSON with a `message` attribute.
+Let's create a local native plugin called `NearbyMessagesPlugin` and add a simple `HelloWorld` method to test that our Javascript can call native functions. The method is going to resolve the call by sending back a JSON with a `message` attribute.
 
-**Android**
+## Android
+
+[View commit](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/f9a4478de05fb4d0e9b86a8527836295f3826c42)
 
 Open the `/android` directory of your project in Android Studio.
 
@@ -78,7 +82,9 @@ this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
 
 We can run our project like any other native Android project, by pressing the 'play' button in Adroid Studio.
 
-**iOS**
+## iOS
+
+[View commit](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/b53757d8faaa57d113b899d15ede1e9641703164)
 
 Open the `ios/App` directory of your project in Xcode.
 
@@ -132,5 +138,5 @@ console.log(result.message)
 
 We now have a cross-platform app set up ready to write a native implementation of Google's Nearby Messages API.
 
-<img src="./images/ios.gif" height="400" />
-<img src="./images/android.gif" height="400" />
+<img src="./images/ios.gif" height="500" />
+<img src="./images/android.gif" height="500" />
