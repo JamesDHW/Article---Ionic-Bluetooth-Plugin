@@ -71,6 +71,12 @@ public class NearbyMessagesPlugin extends Plugin {
 }
 ```
 
+For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call: 
+
+```
+notifyListeners("listenerName", ret);
+```
+
 Next, we can register this plugin in `MainActivity.java` where Capacitor initialises its bridge:
 
 ```
@@ -105,6 +111,12 @@ public class NearbyMessagesPlugin: CAPPlugin {
 }
 ```
 
+For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call: 
+
+```
+self.notifyListeners("listenerName", data: ["key":value])
+```
+
 Next, we must register our plugin in a new file called `NearbyMessagesPlugin.m`. When prompted by Xcode, create a Bridging Header file (which is an empty file called `App-Bridging-Header.h`).
 
 ```
@@ -117,7 +129,7 @@ CAP_PLUGIN(NearbyMessagesPlugin, "NearbyMessagesPlugin",
 
 We can run our project like any other native iOS project, by pressing the 'play' button in Xcode.
 
-**Javascript**
+## Javascript
 
 Finally, we can now access the plugins we have written from our Ionic project. We import `Plugins` from Capacitor to find the plugin we have registered in Android and iOS.
 
@@ -137,6 +149,12 @@ console.log(result.message)
 ```
 
 **Warning: make sure you don't try to call your native plugins before they exist in the native code or the app will crash without giving a helpful error**
+
+To listen for asynchronous events, we add a listener with a callback:
+
+```
+NearbyMessagesPlugin.addListener("listenerName", (result) => { console.log(result) });
+```
 
 We now have a cross-platform app set up ready to write a native implementation of Google's Nearby Messages API.
 
