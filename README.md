@@ -136,6 +136,8 @@ const result = await NearbyMessagesPlugin.HelloWorld();
 console.log(result.message)
 ```
 
+**Warning: make sure you don't try to call your native plugins before they exist in the native code or the app will crash without giving a helpful error**
+
 We now have a cross-platform app set up ready to write a native implementation of Google's Nearby Messages API.
 
 <img src="./images/ios.gif" height="500" />
