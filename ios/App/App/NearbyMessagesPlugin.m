@@ -8,5 +8,7 @@
 #import <Capacitor/Capacitor.h>
 
 CAP_PLUGIN(NearbyMessagesPlugin, "NearbyMessagesPlugin",
-  CAP_PLUGIN_METHOD(HelloWorld, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(HelloWorld, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(Publish, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(Subscribe, CAPPluginReturnPromise);
 )
