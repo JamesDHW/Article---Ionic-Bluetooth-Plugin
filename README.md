@@ -1,12 +1,12 @@
 # Ionic cross-platform native plugin tutorial
 
-This is a tutorial to set up for a project to create a cross platform bluetooth mobile app using [Google's Nearby Messages](https://developers.google.com/nearby/messages/overview).
+**TLDR**; in this post, I write a native plugin for a cross-platform mobile app using `Ionic` and `Capacitor`. The plugin I'm writing will be for a mobile app which can communicate between iOS and Android via bluetooth using [Google's Nearby Messages](https://developers.google.com/nearby/messages/overview), but the principles described here can be applied to any native code you wish to write for your Ionic apps.
 
 If you haven't used [Ionic](https://ionicframework.com/) before, you'll need to download the CLI tool.
 
 `npm install -g @ionic/cli`
 
-Then start a new project called 'bt-messages' in your working directory (you can call it whatever you want).
+Then start a new project in your working directory (you can call it whatever you want - I'm calling mine "bt-messages").
 
 `ionic start bt-messages`
 
@@ -40,15 +40,15 @@ There are three main steps to writing a plugin:
 - (iOS & Android) Register this class as a plugin with Capacitor.
 - (Javascript - Ionic) Import and call the methods of our plugin.
 
-Let's create a local native plugin called `NearbyMessagesPlugin` and add a simple `HelloWorld` method to test that our Javascript can call native functions. The method is going to resolve the call by sending back a JSON with a `message` attribute.
+Let's create a local native plugin (I'm calling mine `NearbyMessagesPlugin`) and add a simple `HelloWorld` method to test that our Javascript can call native functions. The method is going to resolve the call by sending back an object (JSON) with a `message` attribute.
 
 ## Android
 
-[View commit](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/f9a4478de05fb4d0e9b86a8527836295f3826c42)
+[[View commit]](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/f9a4478de05fb4d0e9b86a8527836295f3826c42)
 
 Open the `/android` directory of your project in Android Studio.
 
-In `android/app/src/main/java/io/ionic/starter` of your project (next to `MainActivity.java`), we can create a new file called `NearbyMessagesPlugin.java` and write a class which extends the Capacitor `Plugin` class:
+In `android/app/src/main/java/io/ionic/starter` of your project (next to `MainActivity.java`), we can create a new file (once again, I'm calling mine `NearbyMessagesPlugin.java`) and write a class which extends the Capacitor `Plugin` class:
 
 ```
 package io.ionic.starter;
@@ -71,7 +71,7 @@ public class NearbyMessagesPlugin extends Plugin {
 }
 ```
 
-For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call: 
+For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call:
 
 ```
 notifyListeners("listenerName", ret);
@@ -90,7 +90,7 @@ We can run our project like any other native Android project, by pressing the 'p
 
 ## iOS
 
-[View commit](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/b53757d8faaa57d113b899d15ede1e9641703164)
+[[View commit]](https://github.com/JamesDHW/ionic-bluetooth-plugin/commit/b53757d8faaa57d113b899d15ede1e9641703164)
 
 Open the `ios/App` directory of your project in Xcode.
 
@@ -111,7 +111,7 @@ public class NearbyMessagesPlugin: CAPPlugin {
 }
 ```
 
-For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call: 
+For asynchronous methods, we want to trigger a Javascript event. Instead of calling `call.success()` with our data, we can call:
 
 ```
 self.notifyListeners("listenerName", data: ["key":value])
